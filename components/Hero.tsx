@@ -5,12 +5,11 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onStart }) => {
-  const typingTexts = ['আর্থনীতি ™ এনেছে', 'আপনার জন্য'];
+  const typingTexts = ['অর্থনীতি ™ এনেছে', 'আপনার জন্য'];
 
   const [displayedText, setDisplayedText] = useState('');
   const [isTypewriterActive, setIsTypewriterActive] = useState(false);
 
-  /* 1️⃣ Start typewriter AFTER entrance animations */
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsTypewriterActive(true);
@@ -19,7 +18,6 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  /* 2️⃣ JS Typewriter Logic (UNCHANGED) */
   useEffect(() => {
     if (!isTypewriterActive) return;
 
@@ -80,7 +78,6 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
                 {displayedText}
               </span>
 
-              {/* Layout stabilizer */}
               <span
                 className="absolute left-0 top-0 opacity-0 whitespace-nowrap pointer-events-none"
                 aria-hidden="true"
@@ -96,13 +93,17 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
             সব বর্ণনা করা হবে।
           </p>
 
+          {/* 🔘 CTA BUTTON — FIXED */}
           <div className="mt-16 cta-fade">
             <button
               onClick={onStart}
-              className="group relative px-24 py-3 bg-white text-stone-900 tracking-widest uppercase transition-all duration-500 overflow-hidden shadow-sm hover:shadow-xl"
+              className="group relative px-24 py-3 bg-white text-stone-900 text-xl tracking-widest uppercase overflow-hidden border-2 border-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-[3px] hover:shadow-xl"
             >
-              <span className="relative z-10">শুরু করুন</span>
-              <div className="absolute inset-0 bg-black -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              <span className="relative z-10 transition-all duration-300 ease-out group-hover:scale-105 group-hover:text-white">
+                শুরু করুন
+              </span>
+
+              <div className="absolute inset-0 bg-black -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-0" />
             </button>
           </div>
         </div>
@@ -120,7 +121,6 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
           font-family: 'Hind Siliguri', serif;
         }
 
-        /* Entrance animations */
         .headline-fade {
           opacity: 0;
           animation: fadeUp 0.8s ease-out forwards;
@@ -141,7 +141,6 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
           to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 🔥 Typewriter underline caret */
         .typewriter-container {
           position: relative;
           display: inline-block;

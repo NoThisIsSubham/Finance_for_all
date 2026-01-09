@@ -1,4 +1,4 @@
-# Finance_for_all
+# Arthaniti
 Hi, I’m **Subham Bairagi**, the leader of Team **ByteForce**. I am presenting Project *Arthaniti* to you.🦥📰
 
 ![Image Alt](https://github.com/NoThisIsSubham/Arthaniti/blob/06bf9f3718dfad44a902e23ef08bafd8d1c9f7e1/Arthaniti_Poster.jpeg)

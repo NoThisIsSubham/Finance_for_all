@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Chapter } from '../types';
 
-const CHAPTERS: Chapter[] = [
+export const CHAPTERS: Chapter[] = [
   {
     id: 'ch1',
     title: 'প্রথম ধাপ: সঞ্চয় আর বিনিয়োগের গুরুত্ব',

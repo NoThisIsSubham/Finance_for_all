@@ -1,40 +1,76 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { CHAPTERS } from './LearningFlow';
 
 interface LearningPageProps {
-  onNavigate: (state: 'learning') => void;
+  onNavigate: (state: 'learning' | 'mentor' | 'about') => void;
 }
 
 const LearningPage: React.FC<LearningPageProps> = ({ onNavigate }) => {
+  const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
+  const totalLearningFlow = CHAPTERS.length;
+  const currentChapter = CHAPTERS[currentChapterIndex];
+  const isLastChapter = currentChapterIndex === totalLearningFlow - 1;
+
+
+  const handleContinue = () => {
+    if (isLastChapter) {
+      onNavigate('mentor');
+    } else {
+      setCurrentChapterIndex(prev => prev + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="min-h-screen py-32 px-12 bg-white flex flex-col items-center justify-center text-center">
-      {/* Title in Bangla */}
-      <h1 className="text-5xl font-light text-stone-900 mb-12">পড়ুন আর শিখুন</h1>
+    <section className="min-h-screen py-32 px-12 bg-white flex flex-col items-center justify-center">
+      <div className="max-w-4xl w-full">
+        {/* Static heading */}
+        <div className="mb-16">
+          <span className="text-xs font-bold tracking-[0.3em] uppercase text-stone-400">ধাপ {currentChapterIndex + 1} / {totalLearningFlow}</span>
+          <h1 className="text-5xl font-light text-stone-900 mt-4">{currentChapter.title}</h1>
+        </div>
 
-      {/* First text block */}
-      <div className="max-w-3xl space-y-6 text-lg text-stone-700 leading-relaxed mb-16">
-        <h2 className="text-2xl font-semibold text-stone-800 mb-4">প্রথম ধাপ: জমানোর অভ্যাস</h2>
-        <p>টাকা জমানো মানে কৃপণতা নয়। এটি হলো নিজের এবং নিজের পরিবারের ভবিষ্যতের প্রতি একটি দায়িত্ব।</p>
-        <p>টাকা যখন আয় করবেন, তখন প্রথমেই খরচের কথা না ভেবে কিছু অংশ আলাদা করে সরিয়ে রাখুন। এটাই হলো সঞ্চয়ের আসল সূত্র।</p>
-        <p>আমরা অনেক সময় মনে করি মাস শেষে যা বাঁচবে তাই জমাবো। কিন্তু আসলে জমানোর অভ্যাস শুরু হয় আয়ের শুরুতেই।</p>
-        <p>মনে রাখবেন, ছোট ছোট ফোঁটা থেকেই সমুদ্র তৈরি হয়। তাই পাঁচ-দশ টাকা হলেও জমানো শুরু করা জরুরি।</p>
+        {/* Fade-in content */}
+        <div className="animate-fade-in text-lg text-stone-700 leading-relaxed">
+          {currentChapter.content}
+        </div>
+
+        {/* Continue button */}
+        <div className="mt-20 pt-12 border-t border-stone-100 flex justify-end">
+          <button
+            onClick={handleContinue}
+            className="group flex items-center gap-4 text-stone-900 font-medium tracking-widest uppercase text-sm hover:text-stone-500 transition-all select-none"
+          >
+            {isLastChapter ? 'কাকা বাবুর সাথে আলাপ শুরু করুন' : 'পরবর্তী অধ্যায়'}
+            <span className="text-2xl transition-transform group-hover:translate-x-2">→</span>
+          </button>
+        </div>
       </div>
 
-      {/* Second text block */}
-      <div className="max-w-3xl space-y-6 text-lg text-stone-700 leading-relaxed">
-        <h2 className="text-2xl font-semibold text-stone-800 mb-4">দ্বিতীয় ধাপ: বিনিয়োগের গুরুত্ব</h2>
-        <p>শুধু ঘরে টাকা জমিয়ে রাখলে তার মূল্য সময়ের সাথে সাথে কমে যায়। তাই টাকাকে কাজে লাগানো শিখতে হবে।</p>
-        <p>বিনিয়োগ মানে হলো আপনার টাকাকে কাজে লাগানো যাতে সেটি সময়ের সাথে বাড়ে।</p>
-        <p>ব্যাঙ্ক বা অন্য নিরাপদ জায়গায় টাকা রাখলে আমরা তার ওপর কিছু অতিরিক্ত লাভ বা সুদ পাই।</p>
-        <p>ঝুঁকি বুঝে সঠিক জায়গায় টাকা রাখলে টাকা আপনার জন্য দিনরাত কাজ করে।</p>
-      </div>
+      <style>{`
+        .animate-fade-in {
+          opacity: 0;
+          animation: fadeInContent 0.8s ease-out forwards;
+        }
 
-      {/* Quiz button */}
-      <button
-        onClick={() => onNavigate('learning')}
-        className="mt-16 px-6 py-3 bg-stone-900 text-white rounded-lg hover:bg-stone-700 transition"
-      >
-        👉 কুইজে অংশগ্রহণ করুন
-      </button>
+        @keyframes fadeInContent {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-fade-in {
+            animation: none;
+            opacity: 1;
+          }
+        }
+      `}</style>
     </section>
   );
 };

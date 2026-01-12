@@ -37,7 +37,7 @@ const App: React.FC = () => {
       )}
 
       {state === 'learningPage' && <LearningPage onNavigate={setState} />}
-      {state === 'learning' && <LearningFlow onCourseComplete={() => setState('mentor')} />}
+      {state === 'learning' && <LearningFlow onCourseComplete={() => setState('about')} />}
       {state === 'about' && <About />}
       {state === 'mentor' && <ElderMentor />}
 

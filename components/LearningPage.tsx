@@ -10,13 +10,20 @@ const LearningPage: React.FC<LearningPageProps> = ({ onNavigate }) => {
   const totalLearningFlow = CHAPTERS.length;
   const currentChapter = CHAPTERS[currentChapterIndex];
   const isLastChapter = currentChapterIndex === totalLearningFlow - 1;
+  const isFirstChapter = currentChapterIndex === 0;
 
-
-  const handleContinue = () => {
+  const handleNext = () => {
     if (isLastChapter) {
       onNavigate('mentor');
     } else {
       setCurrentChapterIndex(prev => prev + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handlePrevious = () => {
+    if (!isFirstChapter) {
+      setCurrentChapterIndex(prev => prev - 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -35,13 +42,26 @@ const LearningPage: React.FC<LearningPageProps> = ({ onNavigate }) => {
           {currentChapter.content}
         </div>
 
-        {/* Continue button */}
-        <div className="mt-20 pt-12 border-t border-stone-100 flex justify-end">
+        {/* Navigation buttons */}
+        <div className="mt-20 pt-12 border-t border-stone-100 flex justify-between items-center">
           <button
-            onClick={handleContinue}
-            className="group flex items-center gap-4 text-stone-900 font-medium tracking-widest uppercase text-sm hover:text-stone-500 transition-all select-none"
+            onClick={handlePrevious}
+            disabled={isFirstChapter}
+            className={`group flex items-center gap-4 font-medium tracking-widest uppercase text-sm transition-all select-none ${
+              isFirstChapter
+                ? 'text-stone-300 cursor-not-allowed'
+                : 'text-stone-900 hover:text-stone-500'
+            }`}
           >
-            {isLastChapter ? 'কাকা বাবুর সাথে আলাপ শুরু করুন' : 'পরবর্তী অধ্যায়'}
+            <span className={`text-2xl transition-transform ${!isFirstChapter && 'group-hover:-translate-x-2'}`}>←</span>
+            <span className='text-xl'>আগের অধ্যায়</span>
+          </button>
+
+          <button
+            onClick={handleNext}
+            className="group flex items-center gap-4 text-stone-900 font-medium tracking-widest uppercase text-xl hover:text-stone-500 transition-all select-none"
+          >
+            {isLastChapter ? 'কাকা বাবুর সাথে আলাপ করুন' : 'পরের অধ্যায়'}
             <span className="text-2xl transition-transform group-hover:translate-x-2">→</span>
           </button>
         </div>

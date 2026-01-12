@@ -67,7 +67,7 @@ const ElderMentor: React.FC = () => {
     <section id="mentor" className="py-32 px-12 bg-stone-900 text-white flex flex-col items-center overflow-hidden">
       <div className="max-w-4xl w-full">
         <div className="mb-16 text-center">
-          <h2 className="text-5xl font-light mb-6 select-none animate-slide-left">কাকা বাবুর সাথে আলাপ</h2>
+          <h2 className="text-7xl font-light mb-6 select-none animate-slide-left">কাকা বাবু</h2>
           <p className="text-stone-400 text-lg max-w-xl mx-auto font-light leading-relaxed animate-slide-right">
             জীবন, টাকা-পয়সা কিংবা ভবিষ্যৎ নিয়ে কোনো দ্বিধা থাকলে আমাদের পরামর্শদাতার সাথে কথা বলুন। তিনি আপনার কাকুর মতোই শান্তভাবে সব বুঝিয়ে দেবেন।
           </p>

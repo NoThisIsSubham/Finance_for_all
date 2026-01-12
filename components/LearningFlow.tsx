@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Chapter } from '../types';
 
 export const CHAPTERS: Chapter[] = [
@@ -219,48 +219,61 @@ export const CHAPTERS: Chapter[] = [
   },
   {
     id: 'ch5',
-    title: 'পঞ্চম ধাপ: ভবিষ্যৎ প্রজন্মের জন্য শিক্ষা',
+    title: 'ষষ্ঠ ধাপ: আর্থিক প্রতারণা থেকে বাঁচা',
     content: (
       <div className="space-y-8 text-2xl font-light text-stone-800 leading-relaxed">
-        <p id="ch5-line1">আপনার সন্তানদের আর্থিক সাক্ষরতা শেখানো একটি উপহার যা সারাজীবন কাজ করবে।</p>
-        <p id="ch5-line2" className="highlight-target">ছোট বয়স থেকেই শিশুদের <span className="highlight">টাকার মূল্য এবং সঞ্চয়ের অভ্যাস</span> শেখান।</p>
-        <p id="ch5-line3">বাস্তব জীবনের উদাহরণ এবং গল্পের মাধ্যমে শেখানো সবচেয়ে কার্যকর।</p>
-        <p id="ch5-line4" className="highlight-target">যখন আপনি নিজে দায়িত্বশীল আর্থিক সিদ্ধান্ত নেন, <span className="highlight">আপনার সন্তানরা স্বাভাবিকভাবেই সেই পথ অনুসরণ করবে</span>।</p>
+        <p id="ch5-line1">টাকা জমানো কষ্টের কাজ। কিন্তু টাকা হারাতে সময় লাগে না—একটা ফোন কল, একটা মেসেজ, একটা ভুল বিশ্বাস। তাই টাকা বাড়ানোর কথা যেমন জানা দরকার, টাকা কীভাবে হারায় সেটাও জানা সমান জরুরি।</p>
+        <p id="ch5-line2">স্ক্যাম মানে চুরি — শুধু হাত দিয়ে না, কথা দিয়ে।</p>
+        <p id="ch5-line3">অনেক সময় মানুষ ভাবে—“আমি তো কাউকে ঠকাচ্ছি না, আমাকে কেন ঠকাবে?”
+কিন্তু স্ক্যাম এইভাবেই কাজ করে। পরিচিত ভাষায় কথা বলে, তাড়া দেয়, আর বলে—এই সুযোগ আর আসবে না।</p>
+        <p id="ch5-line4">একটা সাধারণ ঘটনা ধরো।
+হঠাৎ ফোন এলো—তুমি নাকি লটারি জিতেছ। কিন্তু টাকা তুলতে গেলে আগে ৫০০ টাকা দিতে হবে। মানুষ ভাবে, “৫০০ই তো, দিলে যদি বড় কিছু পাই!”
+এইভাবেই টাকা যায়।</p>
+        <p id="ch5-line5" className='font-bold'>কিছু সাধারণ স্ক্যাম এভাবে হয়</p>
+        <p id="ch5-line6" className='highlight-target'><span className='highlight'><span className='font-bold'>লটারি বা প্রাইজ স্ক্যাম:</span> যেখানে তুমি অংশ নাওনি, সেখান থেকে পুরস্কার আসে না।</span> তবু বলা হয়—“আপনি জিতেছেন।” আর সঙ্গে সঙ্গে তাড়া।</p>
+        <p id="ch5-line7"><span className='font-bold'>ইনভেস্টমেন্ট বা পঞ্জি স্ক্যাম:</span> এখানে বলা হয় টাকা খুব তাড়াতাড়ি বাড়বে, ঝুঁকি নেই। কয়েকজনের উদাহরণ দেখায়—“ও দেখো, ও তো পেল!”
+কিন্তু সব কথাই ভালো—খারাপ দিক একটাও নেই।</p>
+        <p id="ch5-line8" className='highlight-target'><span className='highlight'><span className='font-bold'>চাকরি বা শিক্ষা স্ক্যাম:</span> এখানে কাজ বা কোর্স পাকা বলে। কিন্তু কাজ শুরুর আগেই টাকা চাই।</span> ফি, ফাইল চার্জ, রেজিস্ট্রেশন—নাম আলাদা, কাজ এক।</p>
+        <p id="ch5-line9" className='highlight-target'><span className='highlight'>স্ক্যাম চেনার সহজ উপায় 
+যেখানে তাড়া আছে, গোপন কথা আছে, আর আগে টাকা চাওয়া হচ্ছে</span> — সেখানে থামা দরকার।
+বিশ্বাসযোগ্য জায়গা সময় নেয়, প্রশ্ন করতে দেয়।</p>
+        <p id="ch5-line10">টাকা বাড়ানো ধীরে হয়, কিন্তু টাকা হারানো খুব দ্রুত।
+তাই বোঝা, থামা, আর প্রশ্ন করা—এই তিনটাই টাকা বাঁচানোর প্রথম ধাপ</p>
       </div>
     ),
     quizzes: [
       {
         id: 'q5-1',
-        question: 'আপনার সন্তানদের আর্থিক শিক্ষা কেন গুরুত্বপূর্ণ?',
+        question: 'স্ক্যামে সাধারণত কোন জিনিসটা থাকে?',
         options: [
-          { id: 'a', text: 'কারণ স্কুলে এটি শেখানো হয়', isCorrect: false },
-          { id: 'b', text: 'কারণ এটি সারাজীবন কাজ করে এমন একটি উপহার', isCorrect: true },
-          { id: 'c', text: 'এটি কোনো প্রয়োজন নেই', isCorrect: false }
+          { id: 'a', text: 'সময় নিয়ে বোঝানো', isCorrect: false },
+          { id: 'b', text: 'হঠাৎ তাড়া', isCorrect: true },
+          { id: 'c', text: 'লিখিত কাগজ', isCorrect: false }
         ],
         explanation: 'আর্থিক সাক্ষরতা আপনার সন্তানদের সম্পূর্ণ জীবন পরিবর্তন করতে পারে।',
-        highlightLineId: 'ch5-line1'
+        highlightLineId: 'ch5-line9'
       },
       {
         id: 'q5-2',
-        question: 'শিশুদের কখন আর্থিক শিক্ষা দেওয়া শুরু করা উচিত?',
+        question: 'কোথায় অংশ না নিলে পুরস্কার আসে না?',
         options: [
-          { id: 'a', text: 'শুধু কলেজে', isCorrect: false },
-          { id: 'b', text: 'ছোট বয়স থেকেই', isCorrect: true },
-          { id: 'c', text: 'কখনো শেখানোর দরকার নেই', isCorrect: false }
+          { id: 'a', text: 'লটারি', isCorrect: true },
+          { id: 'b', text: 'বাজার', isCorrect: false },
+          { id: 'c', text: 'অফিস', isCorrect: false }
         ],
         explanation: 'ছোট বয়স থেকে শিশুরা টাকার মূল্য এবং সঞ্চয়ের গুরুত্ব শিখলে সারাজীবন উপকৃত হবে।',
-        highlightLineId: 'ch5-line2'
+        highlightLineId: 'ch5-line6'
       },
       {
         id: 'q5-3',
-        question: 'আর্থিক শিক্ষা দেওয়ার সবচেয়ে কার্যকর উপায় কী?',
+        question: 'চাকরির আগে কোনটা সন্দেহজনক?',
         options: [
-          { id: 'a', text: 'শুধু বইয়ের মাধ্যমে', isCorrect: false },
-          { id: 'b', text: 'বাস্তব জীবনের উদাহরণ এবং গল্পের মাধ্যমে', isCorrect: true },
-          { id: 'c', text: 'শেখানোর কোনো উপায় নেই', isCorrect: false }
+          { id: 'a', text: 'ইন্টারভিউ', isCorrect: false },
+          { id: 'b', text: 'আগে টাকা চাওয়া', isCorrect: true },
+          { id: 'c', text: 'প্রশ্ন করা', isCorrect: false }
         ],
         explanation: 'বাস্তব জীবনের গল্প এবং অভিজ্ঞতা শেয়ার করা সবচেয়ে কার্যকর শিক্ষা পদ্ধতি।',
-        highlightLineId: 'ch5-line3'
+        highlightLineId: 'ch5-line8'
       }
     ]
   }
@@ -276,6 +289,11 @@ const LearningFlow: React.FC<LearningFlowProps> = ({ onCourseComplete }) => {
   const [view, setView] = useState<'chapter' | 'quiz' | 'celebration' | 'retry' | 'courseComplete'>('chapter');
   const [highlightLineId, setHighlightLineId] = useState<string | undefined>();
 
+  // Smooth scroll to top on view changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [view, currentChapterIndex, currentQuizIndex]);
+
   const currentChapter = CHAPTERS[currentChapterIndex];
   const currentQuiz = currentChapter.quizzes[currentQuizIndex];
   const totalChapters = CHAPTERS.length;
@@ -283,8 +301,14 @@ const LearningFlow: React.FC<LearningFlowProps> = ({ onCourseComplete }) => {
 
   const handleQuizResult = (correct: boolean) => {
     if (correct) {
-      setView('celebration');
-      playSuccessSound();
+      if (isLastQuizOfLastChapter) {
+        // Skip celebration, go directly to courseComplete
+        setView('courseComplete');
+        playCourseCompleteSound();
+      } else {
+        setView('celebration');
+        playSuccessSound();
+      }
     } else {
       setHighlightLineId(currentQuiz.highlightLineId);
       setView('retry');
@@ -341,7 +365,7 @@ const LearningFlow: React.FC<LearningFlowProps> = ({ onCourseComplete }) => {
         >
           {isLastQuizOfLastChapter ? 'কোর্স সম্পন্নতা দেখুন' : 'পরবর্তী প্রশ্ন'}
         </button>
-        <div className="absolute inset-0 pointer-events-none opacity-50">
+        <div className="absolute inset-0 pointer-events-none opacity-0">
           {[...Array(20)].map((_, i) => (
             <div 
               key={i} 
@@ -415,7 +439,7 @@ const LearningFlow: React.FC<LearningFlowProps> = ({ onCourseComplete }) => {
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-12 max-w-5xl mx-auto">
+    <div className="min-h-screen pt-32 pb-20 px-12 max-w-5xl mx-auto caret-transparent">
       <div className="mb-20">
         <span className="text-xs font-bold tracking-[0.3em] uppercase text-stone-400">ধাপ {currentChapterIndex + 1} / {totalChapters}</span>
         <h2 className="text-6xl font-light mt-4 text-stone-900">{currentChapter.title}</h2>
@@ -432,7 +456,7 @@ const LearningFlow: React.FC<LearningFlowProps> = ({ onCourseComplete }) => {
               onClick={() => setView('quiz')}
               className="group flex items-center gap-4 text-stone-900 font-medium tracking-widest uppercase text-sm hover:text-stone-500 transition-all select-none"
             >
-              কুইজে অংশগ্রহণ করুন
+              <span className="text-lg">কুইজে অংশগ্রহণ করুন</span>
               <span className="text-2xl transition-transform group-hover:translate-x-2">→</span>
             </button>
           </div>
